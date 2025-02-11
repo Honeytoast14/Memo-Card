@@ -4,7 +4,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { createContext, useContext, useReducer } from "react";
 
-const BASE_URL = `http://localhost:5000`;
+const BASE_URL = `http://localhost:5174`;
 
 const initState = {
   user: null,
