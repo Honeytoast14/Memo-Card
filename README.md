@@ -108,5 +108,6 @@ To get started with the project, go to this [website](https://memocard.vercel.ap
         ]
       }
      ```
-
+3. **After create mock API**  
+   You can try website by using username and password from above.
 ---
