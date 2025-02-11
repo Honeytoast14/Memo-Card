@@ -2,6 +2,7 @@
 
 ## Description
 A simple login and memo website.
+Website: https://memocard.vercel.app/
 
 ---
 
@@ -15,7 +16,7 @@ This project is built with the following technologies:
 
 ---
 ## How to Use
-To get started with the project, follow these steps:
+To get started with the project, go to this [website](https://memocard.vercel.app/) and follow these steps:
 1. **Install Tweak Extension**  
    Install the Tweak extension to mock API
    [Click here to install Tweak Extension](https://chromewebstore.google.com/detail/tweak-mock-and-modify-htt/feahianecghpnipmhphmfgmpdodhcapi)
