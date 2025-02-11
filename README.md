@@ -1,7 +1,7 @@
 # Memo Card
 
 ## Description
-> A simple login and memo website.
+A simple login and memo website.
 
 ---
 
