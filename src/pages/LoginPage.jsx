@@ -35,6 +35,7 @@ export default function LoginPage() {
   useEffect(() => {
     const token = localStorage.getItem("login-token");
     if (token) {
+      localStorage.clear();
       navigate("/");
     }
   }, [navigate]);
