@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Noto sans thai";
+  src: url("/fonts/NotoSansThai-Regular.ttf") format("truetype");
+}
+
+:root {
+  background-color: #1e1e1e;
+  font-family: "Noto sans thai", sans-serif;
+  color: white;
+}
