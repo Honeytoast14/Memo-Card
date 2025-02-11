@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
@@ -17,17 +17,12 @@ export default function HomePage() {
   const [create, setCreate] = useState(false);
   const [data, setData] = useState({ user: {}, memos: [] });
 
-  const filteredCards = useMemo(() => {
-    return data.memos.filter(
-      (card) => data.user.role === "ADMIN" || card.role === data.user.role
-    );
-  }, [data.memos, data.user]);
-
-  const userCardSorted = useMemo(() => {
-    return data.memos
-      .filter((card) => card.role === "USER")
-      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-  }, [data.memos]);
+  const filteredCards = data.memos.filter(
+    (card) => data.user.role === "ADMIN" || card.role === data.user.role
+  );
+  const userCardSorted = data.memos
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .filter((card) => card.role === "USER");
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -39,34 +34,12 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("login-token");
-    if (!token) {
-      navigate("/auth/login");
-      return;
-    }
-    try {
-      const decode = jwtDecode(token);
-      if (!["ADMIN", "USER"].includes(decode.role)) {
-        console.error("Unauthorized role:", decode.role);
-        localStorage.clear();
-        navigate("/auth/login");
-        return;
-      }
-      setData((prev) => ({ ...prev, user: decode }));
-    } catch (error) {
-      console.error("Invalid token", error);
-      localStorage.clear();
-      navigate("/auth/login");
-    }
-  }, [navigate]);
-
-  useEffect(() => {
     const fetchData = async () => {
       setIsLoad(true);
       try {
         const response = await getCards();
         if (response.success) {
-          setData((prev) => ({ ...prev, memos: state.memos }));
+          setData((prev) => (prev = { ...prev, memos: state.memos }));
         }
       } catch (error) {
         console.error("Error fetching memos:", error);
@@ -75,13 +48,32 @@ export default function HomePage() {
       }
     };
 
+    const token = localStorage.getItem("login-token");
     const memos = localStorage.getItem("memos");
-    if (memos) {
-      setData((prev) => ({ ...prev, memos: JSON.parse(memos) }));
+    if (token) {
+      try {
+        const decode = jwtDecode(token);
+        if (!["ADMIN", "USER"].includes(decode.role)) {
+          console.error("Unauthorized role:", decode.role);
+          localStorage.clear();
+          navigate("/auth/login");
+          return;
+        }
+        setData((prev) => (prev = { ...prev, user: decode }));
+        if (memos) {
+          setData((prev) => (prev = { ...prev, memos: JSON.parse(memos) }));
+        } else {
+          fetchData();
+        }
+      } catch (error) {
+        console.error("Invalid token", error);
+        localStorage.clear();
+        navigate("/auth/login");
+      }
     } else {
-      fetchData();
+      navigate("/auth/login");
     }
-  }, [state.memos, getCards]);
+  }, [navigate, state.memos, getCards]);
 
   return (
     <div className="py-12 px-2 sm:px-10 h-screen">

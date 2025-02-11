@@ -4,8 +4,6 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { createContext, useContext, useReducer } from "react";
 
-const BASE_URL = `http://localhost:5000`;
-
 const initState = {
   user: null,
   memos: [],
@@ -35,7 +33,7 @@ export const AppProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post(`${BASE_URL}/auth/login`, {
+      const response = await axios.post(`/auth/login`, {
         username,
         password,
       });
@@ -63,7 +61,7 @@ export const AppProvider = ({ children }) => {
         return { success: true };
       }
 
-      const response = await axios.get(`${BASE_URL}/memos`);
+      const response = await axios.get(`/memos`);
       if (response.data) {
         dispatch({ type: "GET_CARDS", payload: response.data });
         return { success: true };
