@@ -1,11 +1,17 @@
 # Memo Card
 
 ## Description
-A simple login and memo website.
+A simple login and memo website with mock authentication and API. The website allows users to log in and view memo cards, with separate views for Admin and regular Users.
+
 Website: https://memocard.vercel.app/
 
 ---
-
+## Features
+- Mock Login System: Simulated authentication for Admin and Users.
+- Memo Cards: Displays a memos list, with Admin having additional controls.
+- Role-Based Access: Different views for Admin and Users.
+- Mock API: Uses a mock API to fetch and manage memo data.
+---
 ## Technologies Used
 
 This project is built with the following technologies:
