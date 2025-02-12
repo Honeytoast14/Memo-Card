@@ -7,10 +7,10 @@ Website: https://memocard.vercel.app/
 
 ---
 ## Features
-- Mock Login System: Simulated authentication for Admin and Users.
-- Memo Cards: Displays a memos list, with Admin having additional controls.
-- Role-Based Access: Different views for Admin and Users.
-- Mock API: Uses a mock API to fetch and manage memo data.
+- **Mock Login System**: Simulated authentication for Admin and Users.
+- **Memo Cards**: Displays a memos list, with Admin having additional controls.
+- **Role-Based Access**: Different views for Admin and Users.
+- **Mock API**: Uses mock API to fetch and manage memo data.
 ---
 ## Technologies Used
 
